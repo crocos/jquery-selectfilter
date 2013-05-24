@@ -18,7 +18,7 @@
       , lastText = '@'
       , interval;
 
-    if (!$filter) {
+    if ($filter.length == 0) {
       return;
     }
 
@@ -43,7 +43,6 @@
         return;
       }
 
-      console.log('call');
       $select.empty();
 
       $.each(choices, function(i, choice) {
