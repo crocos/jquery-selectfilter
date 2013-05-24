@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>jquery.selectfilter</title>
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="components/qunit/qunit.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>jquery.selectfilter</h1>
+        <p class="lead">simple test</p>
+      </div>
+      <form>
+        <select id="simple-select">
+          <option value="sotarok">sotarok</option>
+          <option value="fivestar">fivestar</option>
+          <option value="wozozo">wozozo</option>
+          <option value="riaf">riaf</option>
+          <option value="yuchimiri">yuchimiri</option>
+          <option value="suzuki">suzuki</option>
+          <option value="tofujiit">tofujiit</option>
+          <option value="tetaketa">tetaketa</option>
+          <option value="okapon">okapon</option>
+          <option value="cocoitiban">cocoitiban</option>
+          <option class="text-error" value="chacococcoccoccoccoccocco">chacococcoccoccoccoccocco</option>
+        </select>
+        <input type="text" class="search-query" data-selectfilter="#simple-select" />
+      </form>
+
+      <h2 id="qunit-banner"></h2>
+      <div id="qunit-testrunner-toolbar"></div>
+      <h2 id="qunit-userAgent"></h2>
+      <ol id="qunit-tests"></ol>
+
+      <hr />
+
+      <p class="text-right">Copyright &copy; 2013 Crocos Inc., All rights reserved.</p>
+
+    </div>
+    <script src="components/jquery/jquery.min.js"></script>
+    <script src="components/qunit/qunit.js"></script>
+    <script src="../src/jquery.selectfilter.js"></script>
+    <script>
+      $(function() {
+        var $query = $('.search-query')
+          , $select = $('#simple-select')
+          , optionsCount = 11;
+
+        test('default', function() {
+          equal(optionsCount, $('option', $select).length);
+        });
+
+        asyncTest('word test', 1, function() {
+          $query.val('a');
+
+          setTimeout(function() {
+            equal(7, $('option', $select).length);
+            start();
+            $query.val('');
+          }, 300);
+        });
+
+        asyncTest('reset test', 1, function() {
+          $query.val('');
+
+          setTimeout(function() {
+            equal(optionsCount, $('option', $select).length);
+            start();
+            $query.val('');
+          }, 300);
+        });
+
+        asyncTest('attribute test', 1, function() {
+          $query.val('chaco');
+
+          setTimeout(function() {
+            equal('text-error', $('option', $select).attr('class'));
+            start();
+            $query.val('');
+          }, 300);
+        });
+      });
+    </script>
+  </body>
+</html>

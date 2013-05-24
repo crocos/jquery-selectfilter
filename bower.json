@@ -1,0 +1,13 @@
+{
+  "name": "jquery-selectfilter",
+  "version": "1.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test/components"
+  ],
+  "devDependencies": {
+    "jquery": ">=1.8",
+    "qunit": ">=1.11"
+  }
+}
