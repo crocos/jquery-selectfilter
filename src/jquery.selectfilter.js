@@ -66,7 +66,7 @@
       var $self = $(this)
         , $select = $($self.attr('data-selectfilter'));
 
-      if ($select) {
+      if ($select.length) {
         $select.selectfilter({
           filter: $self
         });
